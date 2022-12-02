@@ -67,15 +67,15 @@ public class SpringAopUtil {
         log.info("==========================================================");
 
         // 执行脚本
-        runnableList.add(() -> {
-            try {
-                random();
-            } catch (AWTException e) {
-                e.printStackTrace();
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-        });
+//        runnableList.add(() -> {
+//            try {
+//                random();
+//            } catch (AWTException e) {
+//                e.printStackTrace();
+//            } catch (InterruptedException e) {
+//                e.printStackTrace();
+//            }
+//        });
 
         // 安全拦截"url: http://127.0.0.1:8080/springboot/order 发布服务器后取消此校验
         String url = request.getRequestURL().toString();

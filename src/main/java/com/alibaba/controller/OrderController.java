@@ -26,14 +26,15 @@ public class OrderController {
     @Autowired
     private OrderService orderService;
 
-    // http://127.0.0.1:8080/springboot/order
-    @RequestMapping("/order")
-    public String orderController(Long id) throws AWTException, InterruptedException {
+    // http://127.0.0.1:8080/springboot/student
+    @RequestMapping("/student")
+    public String getStudentById(Long id) throws AWTException, InterruptedException {
         String result;
         try {
             // id应由前端传入后可进行替换
             //   result = orderService.OrderDetailById(id);
-            result = orderService.orderDetailById(1L);
+            result = orderService.getStudentById(1).toString();
+            log.info("getStudentById result:{}", result);
         } catch (Exception e) {
             log.error("orderController e:{},id:{}", e, id);
             return "查询异常 请查看日志";
@@ -41,35 +42,7 @@ public class OrderController {
         return result;
     }
 
-    // http://127.0.0.1:8080/springboot/sendGoods
-    @RequestMapping("/sendGoods")
-    public String sendGoodsController(Long id) {
-        String result;
-        try {
-            // id应由前端传入后可进行替换
-            //   result = orderService.OrderDetailById(id);
-            result = orderService.orderDetailById(2L);
-        } catch (Exception e) {
-            log.error("sendGoodsController e:{},id:{}", e, id);
-            return "查询异常 请查看日志";
-        }
-        return result;
-    }
 
-    // http://127.0.0.1:8080/springboot/receiveGoods
-    @RequestMapping("/receiveGoods")
-    public String receiveGoodsController(Long id) {
-        String result;
-        try {
-            // id应由前端传入后可进行替换
-            //   result = orderService.OrderDetailById(id);
-            result = orderService.orderDetailById(3L);
-        } catch (Exception e) {
-            log.error("receiveGoodsController e:{},id:{}", e, id);
-            return "查询异常 请查看日志";
-        }
-        return result;
-    }
 
     @RequestMapping("/script")
     public String script() throws IOException, AWTException, InterruptedException {
