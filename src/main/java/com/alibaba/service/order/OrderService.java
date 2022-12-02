@@ -9,4 +9,6 @@ import java.util.Map;
 public interface OrderService {
     Student getStudentById(Integer id);
     Map<Integer, Student> getAllStudent();
+
+    int addStudent();
 }

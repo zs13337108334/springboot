@@ -37,5 +37,13 @@ public class OrderServiceImpl implements OrderService {
         Map<Integer, Student> map = studentList.stream().filter(Objects::nonNull).collect(Collectors.toMap(o -> o.getId(), Function.identity()));
         return map;
     }
+
+    @Override
+    public int addStudent() {
+        Student student = new Student();
+        student.setAge("27");
+        student.setName("张帅");
+        return studentMapper.addStudent(student);
+    }
 }
 

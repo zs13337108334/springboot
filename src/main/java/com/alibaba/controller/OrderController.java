@@ -42,6 +42,11 @@ public class OrderController {
         return result;
     }
 
+    @RequestMapping("/1")
+    public String get1() {
+        return "1";
+    }
+
     @RequestMapping("/allStudent")
     public String getStudentAll() {
         String result;
@@ -53,6 +58,21 @@ public class OrderController {
         } catch (Exception e) {
             log.error("orderController e:{}", e);
             return "查询异常 请查看日志";
+        }
+        return result;
+    }
+
+    @RequestMapping("/addStudent")
+    public int addStudent() {
+        int result;
+        try {
+            // id应由前端传入后可进行替换
+            //   result = orderService.OrderDetailById(id);
+            result = orderService.addStudent();
+            log.info("getStudentById result:{}", result);
+        } catch (Exception e) {
+            log.error("orderController e:{}", e);
+            return 0;
         }
         return result;
     }
