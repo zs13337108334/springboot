@@ -51,7 +51,7 @@ public class OrderController {
     public String getStudentAll() {
         String result;
         try {
-            // id应由前端传入后可进行替换
+            // id应由前端传入后可进行替换1
             //   result = orderService.OrderDetailById(id);
             result = orderService.getAllStudent().toString();
             log.info("getStudentById result:{}", result);
