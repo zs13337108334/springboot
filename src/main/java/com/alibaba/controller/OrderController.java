@@ -42,6 +42,23 @@ public class OrderController {
         return result;
     }
 
+    @RequestMapping("/allStudent")
+    public String getStudentAll() {
+        String result;
+        try {
+            // id应由前端传入后可进行替换
+            //   result = orderService.OrderDetailById(id);
+            result = orderService.getAllStudent().toString();
+            log.info("getStudentById result:{}", result);
+        } catch (Exception e) {
+            log.error("orderController e:{}", e);
+            return "查询异常 请查看日志";
+        }
+        return result;
+    }
+
+
+
 
 
     @RequestMapping("/script")
