@@ -69,6 +69,7 @@ public class OrderController {
             // id应由前端传入后可进行替换
             //   result = orderService.OrderDetailById(id);
             result = orderService.addStudent();
+            //
             log.info("getStudentById result:{}", result);
         } catch (Exception e) {
             log.error("orderController e:{}", e);
