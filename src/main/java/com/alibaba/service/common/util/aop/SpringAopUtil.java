@@ -1,5 +1,6 @@
 package com.alibaba.service.common.util.aop;
 
+import com.alibaba.controller.OrderController;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.service.common.util.result.BaseResult;
 import com.alibaba.service.common.util.result.BaseResultGenerator;
@@ -7,6 +8,8 @@ import com.alibaba.service.common.util.result.ErrorCodeEnum;
 import com.alibaba.service.common.util.thread.ThreadPoolUtils;
 import lombok.extern.slf4j.Slf4j;
 import org.aspectj.lang.JoinPoint;
+import org.aspectj.lang.annotation.After;
+import org.aspectj.lang.annotation.AfterReturning;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
 import org.aspectj.lang.annotation.Pointcut;
@@ -33,21 +36,23 @@ import java.util.concurrent.TimeUnit;
 /**
  * @author zhansghuai
  * @date 2022/12/01
+ * execution(* com.wmx.aspect.EmpServiceImpl.findEmpById(..)) 匹配findEmpById方法
  */
 @Aspect
 @Component
 @Slf4j
 public class SpringAopUtil {
-    // 切入点：待增强的方法
-    @Pointcut("execution(public * com.alibaba.controller.*.*(..))")
 
-    //切入点签名
-    public void log() {
-        System.out.println("pointCut签名。。。");
-    }
+    // 切入点 controller包切入
+    @Pointcut("execution(public * com.alibaba.controller.*.*(..))")
+    public void pointCut() {}
+
+    // 切入点 OrderController类切入
+    @Pointcut("execution(* com.alibaba.controller.OrderController.*(..))")
+    public void controller(){}
 
     // 前置通知 （切入点方法之前执行 用于查看请求）
-    @Before("log()")
+    @Before("controller()")
     public void deBefore(JoinPoint jp) throws Throwable {
 
         List<Runnable> runnableList = new ArrayList<>();
@@ -99,6 +104,18 @@ public class SpringAopUtil {
 
 
     }
+
+    @After("controller()")
+    public void deAfter(JoinPoint jp) throws Throwable {
+        log.info("@After 方法执行完成了");
+    }
+
+    @AfterReturning("controller()")
+    public void deAfterRuning(JoinPoint jp) throws Throwable {
+        log.info("@AfterReturning 方法执行完成了");
+    }
+
+
 
     private void random() throws AWTException, InterruptedException {
         Robot m1 = new Robot();
